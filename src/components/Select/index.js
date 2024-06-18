@@ -13,10 +13,12 @@ const Select = ({
   label,
   type = "normal",
 }) => {
+  // cette partie de code gére l'onglet select Nos réalisation Catégorie
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
-    onChange();
+    // onchange doit contenir une valeur initiale,sinon sera undifined. permet de résoudre le scénario 
+    onChange(newValue);
     setValue(newValue);
     setCollapsed(newValue);
   };
