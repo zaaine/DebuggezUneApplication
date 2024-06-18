@@ -5,20 +5,22 @@ import { getMonth } from "../../helpers/Date";
 import "./style.scss";
 
 const Slider = () => {
-  const { data } = useData();  
+  const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
-
   const nextCard = () => {
-    setIndex((prevIndex) => (prevIndex + 1) % byDateDesc.length);
-    };
-  
+      setTimeout(
+        // Ajout d'un -1 à  byDateDesc.length vérifie si l'index actuel est inférieur au dernier index valide du tableau
+        () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
+        5000
+      );
+    
+  };
   useEffect(() => {
-    const interval = setInterval(nextCard, 5000);
-    return () => clearInterval(interval);
-  }, [byDateDesc.length]);
+    nextCard();
+  });
 
   return (
     <div className="SlideCardList">
