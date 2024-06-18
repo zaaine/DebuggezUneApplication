@@ -11,11 +11,11 @@ const Slider = () => {
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
 
-  // Retrait de setTimeOut pour SetInterval et clearInterval
   const nextCard = () => {
     setIndex((prevIndex) => (prevIndex + 1) % byDateDesc.length);
-  };
-  
+    };
+    
+    // Retrait de setTimeOut pour SetInterval et clearInterval
   useEffect(() => {
     const interval = setInterval(nextCard, 5000);
     return () => clearInterval(interval);
