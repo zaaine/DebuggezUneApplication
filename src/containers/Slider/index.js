@@ -14,13 +14,11 @@ const Slider = () => {
   const nextCard = () => {
     setIndex((prevIndex) => (prevIndex + 1) % byDateDesc.length);
     };
-    
-    // Retrait de setTimeOut pour SetInterval et clearInterval
+  
   useEffect(() => {
     const interval = setInterval(nextCard, 5000);
     return () => clearInterval(interval);
   }, [byDateDesc.length]);
-
 
   return (
     <div className="SlideCardList">
@@ -45,10 +43,13 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                // warning console modification de la key
+                  key={`${_.title}`}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+                  checked={index === radioIdx}
+                  // readOnly permet de synchro le bulletpoint sur la slide en cours
+                  readOnly
                 />
               ))}
             </div>
