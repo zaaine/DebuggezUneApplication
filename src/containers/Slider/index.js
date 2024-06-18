@@ -10,6 +10,8 @@ const Slider = () => {
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
+
+  // Retrait de setTimeOut pour SetInterval et clearInterval
   const nextCard = () => {
     setIndex((prevIndex) => (prevIndex + 1) % byDateDesc.length);
   };
@@ -19,7 +21,7 @@ const Slider = () => {
     return () => clearInterval(interval);
   }, [byDateDesc.length]);
 
-  
+
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
